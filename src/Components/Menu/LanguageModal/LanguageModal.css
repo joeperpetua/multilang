@@ -1,0 +1,22 @@
+.LanguageModal {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.LanguageModal select {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    margin-bottom: 1em;
+}
+
+.LanguageModal option {
+    background-color: #1c1b1f;
+}
