@@ -23,3 +23,9 @@
     width: fit-content;
     align-self: flex-end;
 }
+
+#loader{
+    display: none;
+    margin: 20rem calc(50% - 20rem);
+    cursor: default;
+}

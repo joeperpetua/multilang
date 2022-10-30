@@ -11,7 +11,7 @@ class ResultCard extends React.Component{
                     <h6 className="trans-title">{this.props.lang.name}:</h6>
                 </div>
                 <div className="col">
-                    <p className="translation-text border round" id={'translation-' + this.props.lang.code}>This is a sample text</p>
+                    <p className="translation-text border round" id={'translation-' + this.props.lang.code}></p>
                 </div>
             </div>
             <details id={'variations-' + this.props.lang.code} className="variations">

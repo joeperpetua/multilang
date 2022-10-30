@@ -21,3 +21,7 @@
     background-color: #2b2a2f;
     padding: 1em 0.5em;
 }
+
+.variations {
+    display: none;
+}
