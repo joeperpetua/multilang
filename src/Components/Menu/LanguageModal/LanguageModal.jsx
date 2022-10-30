@@ -1,25 +1,26 @@
 import React from "react";
+import {languages} from "../../../lib/languages.js";
 
 import './LanguageModal.css';
 
 class LanguageModal extends React.Component{
 
-    cancel = () => {
+    cancel(){
         let modal = document.querySelector(".LanguageModal");
         modal.style.display = 'none';
     };
 
-    add = e => {
+    add(){
         let modal = document.querySelector(".LanguageModal");
         let select = document.querySelector("#languages");
-        let lang = select.value;
+        let lang = {"name": select.options[select.selectedIndex].text, "code": select.value};
         
         // checking if the lang was already added
         let present = false;
         let languagesArray = JSON.parse(localStorage.getItem('languagesArray'));
         if (languagesArray){
             languagesArray.forEach(element => {
-                if (element === lang){
+                if (element.code === lang.code){
                     present = true;
                 }
             });
@@ -42,13 +43,9 @@ class LanguageModal extends React.Component{
         return <div className="LanguageModal">  
             <h3>Choose language</h3>
             <select name="languages" id="languages">
-                <option value="en">English</option>
-                <option value="sp">Spanish</option>
-                <option value="fr">French</option>
-                <option value="de">German</option>
-                <option value="nl">Dutch</option>
-                <option value="jp">Japanese</option>
-                <option value="pt">Portuguese</option>
+                {languages.map((element, index) => {
+                    return <option key={index} value={element.code}>{element.name}</option>
+                })}
             </select>
             <div className="modal-confirm">
                 <button onClick={this.cancel}>Cancel</button>

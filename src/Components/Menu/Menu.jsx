@@ -4,17 +4,6 @@ import LanguageModal from "./LanguageModal/LanguageModal";
 
 import './Menu.css';
 
-const Languages = () => {
-    console.log('a');
-    let languagesArray = JSON.parse(localStorage.getItem('languagesArray'));
-    if (!languagesArray){
-        return <LanguageItem data={null} />
-    }
-    languagesArray.forEach(element => {
-        return <LanguageItem data={element} />
-    });
-};
-
 class Menu extends React.Component{
 
     constructor(props){
@@ -29,7 +18,7 @@ class Menu extends React.Component{
             this.setState({
                 languages: JSON.parse(window.localStorage.getItem('languagesArray'))
             });
-            console.log(this.state.languages, JSON.parse(window.localStorage.getItem('languagesArray')));
+            // console.log(this.state.languages, JSON.parse(window.localStorage.getItem('languagesArray')));
         });
     }
 
@@ -47,9 +36,13 @@ class Menu extends React.Component{
         return <div className="Menu">
             <div className="menu-lang-div">
                 <h3 className="menu-lang-title">Target languages:</h3>
-                
-                <button className="menu-add-btn" onClick={this.openModal}>Add new language</button>
-                <button className="menu-add-btn" onClick={this.resetLanguages}>Clear all languages</button>
+                {JSON.parse(localStorage.getItem('languagesArray'))?.map((element, index) => {
+                    return <LanguageItem key={index} lang={element} />
+                })}
+                <div className="menu-buttons">
+                    <button className="menu-add-btn" onClick={this.resetLanguages}>Clear all languages</button>
+                    <button className="menu-add-btn" onClick={this.openModal}>Add new language</button>
+                </div>
                 <LanguageModal />
             </div>
         </div>;
