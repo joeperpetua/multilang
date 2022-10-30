@@ -6,10 +6,6 @@
     align-items: center;
 }
 
-.language-item{
-
-}
-
-.language-remove-item{
-    height: 1em;
+.language-remove-item {
+    background-color: red;
 }

@@ -10,7 +10,8 @@
     left: -100vw;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 3em;
+    padding-top: 10vh;
+    z-index: 1;
 }
 
 @keyframes close {
@@ -48,11 +49,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-}
-
-button {
-    padding: 1em;
-    cursor: pointer;
 }
 
 .menu-item {

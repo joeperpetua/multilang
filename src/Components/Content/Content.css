@@ -1,3 +1,22 @@
 .Content {
-    margin-top: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 10vh;
+    width: 90vw;
+    min-height: 70vh;
+    z-index: 0;
+}
+
+.input-div {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.result-cards {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding-top: 6vh;
 }

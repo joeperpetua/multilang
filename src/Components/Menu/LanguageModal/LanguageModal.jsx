@@ -41,7 +41,7 @@ class LanguageModal extends React.Component{
 
     render(){
         return <div className="LanguageModal">  
-            <h3>Choose language</h3>
+            <h4>Choose language:</h4>
             <select name="languages" id="languages">
                 {languages.map((element, index) => {
                     return <option key={index} value={element.code}>{element.name}</option>

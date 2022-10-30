@@ -1,0 +1,23 @@
+.ResultCard{
+    color: white;
+    width: 100%;
+}
+
+.ResultCard > div {
+    align-items: center;
+}
+
+.ResultCard details {
+    user-select: none;
+}
+
+.ResultCard summary {
+    font-size: medium;
+}
+
+.translation-text{
+    margin: 0;
+    font-size: 0.75em;
+    background-color: #2b2a2f;
+    padding: 1em 0.5em;
+}

@@ -17,7 +17,9 @@ class LanguageItem extends React.Component{
     render(){
         return <div className="LanguageItem">
             <p className="language-item">{this.props.lang.name}</p>
-            <button className="language-remove-item" onClick={() => this.remove(this.props.lang)}><img src="https://img.icons8.com/fluency-systems-filled/20/FF0000/x.png"></img></button>
+            <button className="language-remove-item" onClick={() => this.remove(this.props.lang)}>
+                <img src="https://img.icons8.com/fluency-systems-filled/40/FFFFFF/x.png"></img>
+            </button>
         </div>;
     };
 
