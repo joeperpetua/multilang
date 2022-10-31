@@ -25,3 +25,8 @@
 .variations {
     display: none;
 }
+
+.variations p{
+    font-size: .65em;
+    user-select: text;
+}

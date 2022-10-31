@@ -23,8 +23,7 @@ class App extends React.Component{
       });
     });
 
-    let textInput = document.querySelector("#input-text");
-    textInput.addEventListener("keydown", (e) => {
+    document.addEventListener("keydown", (e) => {
       if (e.code === "Enter") {
         console.log("Detected enter key.");
         document.querySelector("#translate-button").click();

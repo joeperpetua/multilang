@@ -19,13 +19,36 @@
     color: black;
 }
 
+.text-input-buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+
 .translate-button{
     width: fit-content;
     align-self: flex-end;
 }
 
-#loader{
+.clear-button {
+    width: fit-content;
+    background-color: red;
+}
+
+.translation-loader, .variations-loader {
     display: none;
-    margin: 20rem calc(50% - 20rem);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.translation-loader p, .variations-loader p{
+    margin: 0;
+    font-size: .7em;
+}
+
+#loader{
+    margin: 20rem calc(15% - 20rem);
     cursor: default;
+    width: 20rem;
+    height: 20rem;
 }
