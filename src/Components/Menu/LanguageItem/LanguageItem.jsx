@@ -18,7 +18,7 @@ class LanguageItem extends React.Component{
         return <div className="LanguageItem">
             <p className="language-item">{this.props.lang.name}</p>
             <button className="language-remove-item" onClick={() => this.remove(this.props.lang)}>
-                <img src="https://img.icons8.com/fluency-systems-filled/40/FFFFFF/x.png"></img>
+                <img alt="" src="https://img.icons8.com/fluency-systems-filled/40/FFFFFF/x.png"></img>
             </button>
         </div>;
     };
