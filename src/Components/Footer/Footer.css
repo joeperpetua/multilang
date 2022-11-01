@@ -1,0 +1,13 @@
+.Footer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+}
+
+.Footer p{
+    font-size: .7em;
+}
+
+.Footer a {
+    text-decoration: underline;
+}
