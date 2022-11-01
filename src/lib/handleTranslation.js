@@ -1,4 +1,8 @@
 async function handleTranslate(q, langArray, stopLoader) {
+    if (!langArray){
+        stopLoader(false, ".translation-loader");
+        return;
+    }
     let tl = '';
     let textFieldArray = [];
     langArray.forEach(element => {
@@ -18,7 +22,8 @@ async function handleTranslate(q, langArray, stopLoader) {
         });
         
     } else {
-        console.error(trans_response);  
+        let trans_json = await trans_response.json();
+        console.log(trans_json.message);   
     }
 
     stopLoader(false, ".translation-loader");
@@ -26,6 +31,10 @@ async function handleTranslate(q, langArray, stopLoader) {
 }
 
 async function handleDictionary(q, langArray, stopLoader) {
+    if (!langArray){
+        stopLoader(false, ".variations-loader");
+        return;
+    }
     let tl = '';
     let textFieldArray = [];
     langArray.forEach(element => {
@@ -48,7 +57,8 @@ async function handleDictionary(q, langArray, stopLoader) {
         });
         
     } else {
-        console.error(trans_response);  
+        let trans_json = await trans_response.json();
+        console.log(trans_json.message);  
     }
     stopLoader(false, ".variations-loader");
     return;

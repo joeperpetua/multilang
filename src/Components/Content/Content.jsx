@@ -3,7 +3,14 @@ import TextInput from "./TextInput/TextInput";
 import ResultCard from "./ResultCard/ResultCard";
 import { handleTranslate, handleDictionary } from "../../lib/handleTranslation";
 import { clearText } from "../../lib/clearText";
+import { toggleMenu } from "../../lib/toggleMenu";
 import './Content.css';
+
+const NoLanguage = <div className="no-lang">
+        <p>No languages selected</p>
+        <button onClick={toggleMenu}>Add languages</button>
+</div>;
+
 
 class Content extends React.Component{
 
@@ -36,6 +43,7 @@ class Content extends React.Component{
                 <TextInput runTranslation={this.runTranslation} clearText={clearText} />
             </div>
             <div className="result-cards">
+                {JSON.parse(localStorage.getItem('languagesArray')) === null ? NoLanguage : null}
                 {JSON.parse(localStorage.getItem('languagesArray'))?.map((element, index) => {
                     return <ResultCard key={index} lang={element} />
                 })}
