@@ -29,12 +29,12 @@ class Menu extends React.Component{
                 </div>
                 <br></br>
                 <LanguageModal />
-                <div className="menu-attributions">
+            </div>
+            <div className="menu-attributions">
                     <p>Attributions:</p>
                     <a rel="noreferrer" target="_blank" href="https://icons8.com/icon/K7OXfoF0zHXw/x">X icon by Icons8</a>
                     <a rel="noreferrer" target="_blank" href="https://icons8.com/icon/364/settings">Settings icon by Icons8</a>
                     <a rel="noreferrer" target="_blank" href="https://icons8.com/icon/62856/github">GitHub icon by Icons8</a>
-                </div>
             </div>
         </div>;
     };
