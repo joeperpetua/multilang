@@ -3,6 +3,7 @@ import Menu from './Components/Menu/Menu';
 import Nav from './Components/Nav/Nav';
 import Content from './Components/Content/Content';
 import Footer from './Components/Footer/Footer';
+import { clearText } from "./lib/clearText";
 import './App.css';
 
 class App extends React.Component{
@@ -17,15 +18,16 @@ class App extends React.Component{
   componentDidMount(){
     console.log('mounted');
     window.addEventListener('storage', () => {
-      console.log("Settings changed.");
+      //console.log("Settings changed.");
       this.setState({
           languages: JSON.parse(window.localStorage.getItem('languagesArray'))
       });
+      clearText();
     });
 
     document.addEventListener("keydown", (e) => {
       if (e.code === "Enter") {
-        console.log("Detected enter key.");
+        //console.log("Detected enter key.");
         document.querySelector("#translate-button").click();
       }
     });
