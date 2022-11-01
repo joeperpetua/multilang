@@ -28,3 +28,32 @@
     width: 40%;
     padding-top: 6vh;
 }
+
+@media screen and (max-width: 760px) {
+    .Content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-div {
+        width: 90%;
+    }
+
+    #input-text{
+        font-size: 1.2em;
+        height: 30vh;
+    }
+
+    .result-cards{
+        width: 70%;
+    }
+
+    h4{
+        font-size: 1.5em;
+    }
+
+    h6{
+        font-size: 1em;
+    }
+  }
