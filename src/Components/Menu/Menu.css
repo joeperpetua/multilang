@@ -3,13 +3,13 @@
     position: absolute;
     flex-direction: column;
     text-align: left;
-    min-height: 100%;
+    min-height: 90vh;
     min-width: 97vw;
     margin: 0;
     background-color: #1c1b1f;
     left: -100vw;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     padding-top: 10vh;
     z-index: 1;
 }
@@ -65,4 +65,22 @@
     font-size: 2em;
     font-weight: bold;
     margin-block: 0.83em;
+}
+
+.menu-attributions{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10vh;
+}
+
+.menu-attributions p {
+    font-size: .6em;
+}
+
+.menu-attributions a {
+    text-decoration: underline;
+    font-size: .5em;
+    align-self: flex-start;
 }
