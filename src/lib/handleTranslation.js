@@ -5,8 +5,12 @@ async function handleTranslate(q, langArray, stopLoader) {
     }
     let tl = '';
     let textFieldArray = [];
-    langArray.forEach(element => {
-        tl += `${element.code},`;
+    langArray.forEach((element, index, array) => {
+        if (index === array.length - 1){ 
+            tl += element.code;
+        } else {
+            tl += `${element.code},`;
+        }
         textFieldArray.push({"lang": element.code, "element": document.querySelector(`#translation-${element.code}`)});
     });
     
@@ -37,8 +41,12 @@ async function handleDictionary(q, langArray, stopLoader) {
     }
     let tl = '';
     let textFieldArray = [];
-    langArray.forEach(element => {
-        tl += `${element.code},`;
+    langArray.forEach((element, index, array) => {
+        if (index === array.length - 1){ 
+            tl += element.code;
+        } else {
+            tl += `${element.code},`;
+        }
         textFieldArray.push({"lang": element.code, "element": document.querySelector(`#variations-list-${element.code}`), "parent": document.querySelector(`#variations-${element.code}`)});
     });
     
