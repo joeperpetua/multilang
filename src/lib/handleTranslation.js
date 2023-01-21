@@ -56,6 +56,8 @@ async function handleDictionary(q, langArray, stopLoader) {
         trans_json.definitions.forEach(response => {
             textFieldArray.forEach(textFieldArrayElement => {
                 if(response.target === textFieldArrayElement.lang){
+                    // clear element before assigning new variations
+                    textFieldArrayElement.element.innerHTML = '';
                     response.result.forEach(el => {
                         textFieldArrayElement.element.innerHTML += `${el}; `;
                     });
