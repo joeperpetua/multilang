@@ -14,7 +14,7 @@ async function handleTranslate(q, langArray, stopLoader) {
         textFieldArray.push({"lang": element.code, "element": document.querySelector(`#translation-${element.code}`)});
     });
     
-    let trans_response = await fetch(`https://apiml.joeper.myds.me/translate?q=${q}&tl=${tl}`);
+    let trans_response = await fetch(`https://apiml.joeper.myds.me/translate?q=${q}&tl=${tl}&sl="auto"`);
     if (trans_response.ok) {
         let trans_json = await trans_response.json();
         trans_json.translations.forEach(response => {
@@ -50,7 +50,7 @@ async function handleDictionary(q, langArray, stopLoader) {
         textFieldArray.push({"lang": element.code, "element": document.querySelector(`#variations-list-${element.code}`), "parent": document.querySelector(`#variations-${element.code}`)});
     });
     
-    let trans_response = await fetch(`https://apiml.joeper.myds.me/dictionary?q=${q}&tl=${tl}`);
+    let trans_response = await fetch(`https://apiml.joeper.myds.me/dictionary?q=${q}&tl=${tl}&sl="auto"`);
     if (trans_response.ok) {
         let trans_json = await trans_response.json();
         trans_json.definitions.forEach(response => {
