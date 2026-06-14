@@ -1,38 +1,100 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import LanguageItem from "./LanguageItem/LanguageItem";
-import LanguageModal from "./LanguageModal/LanguageModal";
-import { useAppContext } from '../../context/AppContext';
+import { useAppContext } from "../../context/AppContext";
+import { languages as allLanguages } from "../../lib/languages";
 
-import './Menu.css';
+import "./Menu.css";
+import { AiOutlineClose } from "react-icons/ai";
 
 function Menu() {
-    const { languages, setLanguages, menuOpen } = useAppContext();
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const { languages, setLanguages, menuOpen } = useAppContext();
+  const [searchQuery, setSearchQuery] = useState("");
 
-    const resetLanguages = () => {
-        setLanguages([]);
-    };
+  const sortedAndFilteredLanguages = useMemo(() => {
+    // First filter by search
+    const filtered = allLanguages.filter((lang) =>
+      lang.name.toLowerCase().includes(searchQuery.toLowerCase()),
+    );
 
-    return <div className={`Menu ${menuOpen ? 'opened' : 'closed'}`}>
-        <div className="menu-lang-div">
-            <h4 className="menu-lang-title">Target languages:</h4>
-            {languages?.map((element, index) => {
-                return <LanguageItem key={index} lang={element} />
+    // Then sort: added languages first
+    return filtered.sort((a, b) => {
+      const aAdded = languages.some((l) => l.code === a.code);
+      const bAdded = languages.some((l) => l.code === b.code);
+
+      if (aAdded && !bAdded) return -1;
+      if (!aAdded && bAdded) return 1;
+      return 0; // maintain original alphabetical order if both are same state
+    });
+  }, [searchQuery, languages]);
+
+  return (
+    <div className={`Menu ${menuOpen ? "opened" : "closed"}`}>
+      <div
+        className="menu-layout padding large-padding"
+        style={{ overflowY: "auto" }}
+      >
+        <div className="row middle-align" style={{ marginBottom: "16px" }}>
+          <h5 className="max no-margin">Target languages:</h5>
+        </div>
+
+        <div
+          className="menu-languages-grid"
+          style={{ height: "auto", maxHeight: "30vh" }}
+        >
+          {languages.map((element) => {
+            return <LanguageItem key={element.code} lang={element} />;
+          })}
+        </div>
+
+        <div
+          className="row middle-align"
+          style={{ marginTop: "32px", marginBottom: "16px" }}
+        >
+          <h5 className="max no-margin">Available languages:</h5>
+        </div>
+
+        <div className="field suffix border" style={{ marginBottom: "24px" }}>
+          <input
+            type="text"
+            placeholder="Search languages..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {searchQuery && (
+            <i
+              onClick={() => setSearchQuery("")}
+              title="Clear search"
+              style={{
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                pointerEvents: "auto",
+              }}
+            >
+              <AiOutlineClose />
+            </i>
+          )}
+        </div>
+
+        <div
+          className="menu-languages-grid"
+          style={{ height: "auto", flex: 1 }}
+        >
+          {sortedAndFilteredLanguages
+            .filter((l) => !languages.some((sl) => sl.code === l.code))
+            .map((element) => {
+              return (
+                <LanguageItem
+                  key={element.code}
+                  lang={element}
+                  onLanguageAdded={() => setSearchQuery("")}
+                />
+              );
             })}
-            <div className="menu-buttons">
-                <button className="menu-add-btn" onClick={resetLanguages}>Clear all languages</button>
-                <button className="menu-add-btn" onClick={() => setIsModalOpen(true)}>Add new language</button>
-            </div>
-            <br></br>
-            {isModalOpen && <LanguageModal onClose={() => setIsModalOpen(false)} />}
         </div>
-        <div className="menu-attributions">
-                <p>Attributions:</p>
-                <a rel="noreferrer" target="_blank" href="https://icons8.com/icon/K7OXfoF0zHXw/x">X icon by Icons8</a>
-                <a rel="noreferrer" target="_blank" href="https://icons8.com/icon/364/settings">Settings icon by Icons8</a>
-                <a rel="noreferrer" target="_blank" href="https://icons8.com/icon/62856/github">GitHub icon by Icons8</a>
-        </div>
-    </div>;
+      </div>
+    </div>
+  );
 }
 
 export default Menu;

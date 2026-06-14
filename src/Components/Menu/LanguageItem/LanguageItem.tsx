@@ -1,25 +1,42 @@
-import React from "react";
-import './LanguageItem.css';
+import "./LanguageItem.css";
 import { Language } from "../../../types";
 import { useAppContext } from "../../../context/AppContext";
+import { AiOutlineDelete, AiOutlinePlusSquare } from "react-icons/ai";
 
 interface LanguageItemProps {
-    lang: Language;
+  lang: Language;
+  onLanguageAdded?: () => void;
 }
 
-function LanguageItem(props: LanguageItemProps) {
-    const { languages, setLanguages } = useAppContext();
+function LanguageItem({ lang, onLanguageAdded }: LanguageItemProps) {
+  const { languages, setLanguages } = useAppContext();
 
-    const remove = (lang: Language) => {
-        setLanguages(languages.filter(l => l.code !== lang.code));
-    };
+  const isAdded = languages.some((l) => l.code === lang.code);
 
-    return <div className="LanguageItem">
-        <p className="language-item">{props.lang.name}</p>
-        <button className="language-remove-item" onClick={() => remove(props.lang)}>
-            <img alt="" src="https://img.icons8.com/fluency-systems-filled/40/FFFFFF/x.png"></img>
-        </button>
-    </div>;
+  const toggleLanguage = () => {
+    if (isAdded) {
+      setLanguages(languages.filter((l) => l.code !== lang.code));
+    } else {
+      setLanguages([...languages, lang]);
+      if (onLanguageAdded) onLanguageAdded();
+    }
+  };
+
+  return (
+    <div className="LanguageItem surface-container">
+      <p className="language-item no-margin">{lang.name}</p>
+      <button
+        className="language-toggle-btn surface-variant no-margin square small"
+        onClick={toggleLanguage}
+      >
+        {isAdded ? (
+          <AiOutlineDelete size={14} />
+        ) : (
+          <AiOutlinePlusSquare size={14} />
+        )}
+      </button>
+    </div>
+  );
 }
 
 export default LanguageItem;
