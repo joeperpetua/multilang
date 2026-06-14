@@ -7,7 +7,7 @@ import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 function Nav() {
   const { menuOpen, setMenuOpen } = useAppContext();
   const [isDark, setIsDark] = useState(
-    document.body.classList.contains("dark")
+    document.body.classList.contains("dark"),
   );
 
   useEffect(() => {
@@ -33,7 +33,11 @@ function Nav() {
             <AiOutlineSetting size={20} />
           )}
         </button>
-        <h3 className="max" id="nav-title" style={{ fontWeight: "normal", margin: "0 0 0 1em" }}>
+        <h3
+          className="max"
+          id="nav-title"
+          style={{ fontWeight: "normal", margin: "0 0 0 1em" }}
+        >
           {menuOpen ? "Settings" : "MultiLang"}
         </h3>
         <button
