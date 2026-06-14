@@ -2,6 +2,7 @@
   "name": "multilang-react",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "homepage": "https://joeperpetua.github.io/multilang",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -12,18 +13,19 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@types/jest": "^30.0.0",
-    "@types/node": "^25.9.3",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "react-scripts": "^5.0.1",
-    "typescript": "^6.0.3"
+    "@types/jest": "^27.5.2",
+    "@types/node": "^20.19.43",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^4.9.5",
+    "vite": "^5.2.0"
   },
   "scripts": {
-    "start": "set PORT=5500 && react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "eslintConfig": {
     "extends": [
