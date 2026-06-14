@@ -1,31 +1,26 @@
 .Nav {
-    display: flex;
-    position: fixed;
-    z-index: 2;
-    flex-direction: row;
-    width: 95%;
-    padding-inline-start: 5%;
-    background-color: #1c1b1f;
+  display: flex;
+  position: fixed;
+  z-index: 2;
+  background-color: #1c1b1f;
 }
 
 .nav-icon-div {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .nav-icon {
-    height: 1.5em;
-    cursor: pointer;
+  height: 1.5em;
+  cursor: pointer;
+  background: none;
 }
 
 .nav-title-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 100%;
+  display: flex;
 }
 
 .nav-title-div h3 {
-    font-weight: normal;
-    margin-left: 2em;
+  font-weight: normal;
+  margin-left: 2em;
 }

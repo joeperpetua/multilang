@@ -1,86 +1,72 @@
 .Menu {
-    display: flex;
-    position: absolute;
-    flex-direction: column;
-    text-align: left;
-    min-height: 90vh;
-    min-width: 97vw;
-    margin: 0;
-    background-color: #1c1b1f;
-    left: -100vw;
-    align-items: center;
-    justify-content: center;
-    padding-top: 10vh;
-    z-index: 1;
-}
-
-@keyframes close {
-    0%   {left: 0;}
-    100% {left: -100vw;}
-}
-
-@keyframes open {
-    0%   {left: -100vw;}
-    100% {left: 0;}
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  text-align: left;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  background-color: var(--background);
+  left: -100vw;
+  top: 0;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 10vh;
+  transition: left 0.3s;
+  z-index: 999;
 }
 
 .closed {
-    left: -100vw;
-    animation-name: close;
-    animation-duration: .17s;
-    animation-timing-function: ease;
+  left: -100vw;
 }
 
 .opened {
-    left: 0;
-    animation-name: open;
-    animation-duration: .17s;
-    animation-timing-function: ease;
+  left: 0;
 }
 
-.menu-lang-title{
-    margin-bottom: 3vh;
+.menu-lang-title {
+  margin-bottom: 3vh;
 }
 
 .menu-lang-div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.menu-buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 3vh;
+.menu-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 3vh;
 }
 
 .menu-item {
-    margin: 5vh;
+  margin: 5vh;
 }
 
-.menu-item a {
-    color: white;
-    font-size: 2em;
-    font-weight: bold;
-    margin-block: 0.83em;
+.menu-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 90vw;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.menu-attributions{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: 10vh;
+.menu-languages-grid {
+  height: 65vh;
+  overflow-y: auto;
+  padding-right: 4px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-content: start;
+  gap: 12px;
+  width: 100%;
+  scrollbar-width: none;
 }
 
-.menu-attributions p {
-    font-size: .6em;
-}
-
-.menu-attributions a {
-    text-decoration: underline;
-    font-size: .5em;
-    align-self: flex-start;
+.menu-footer-buttons {
+  margin-top: 16px;
 }
