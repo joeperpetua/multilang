@@ -1,4 +1,4 @@
-const sleep = async (time, unit) => {
+const sleep = async (time: number, unit: string) => {
     //console.log(` --- Waiting for ${time} ${unit} --- `);
     switch(unit){
       case 'ms':

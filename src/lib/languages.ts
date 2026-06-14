@@ -1,4 +1,6 @@
-const languages = [
+import { Language } from "../types";
+
+const languages: Language[] = [
     {"name": "Afrikaans", "code": "afr"},
     {"name": "Albanian", "code": "sqi"},
     {"name": "Arabic", "code": "ara"},

@@ -1,33 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import LanguageItem from "./LanguageItem/LanguageItem";
 import LanguageModal from "./LanguageModal/LanguageModal";
+import { useAppContext } from '../../context/AppContext';
 
 import './Menu.css';
 
 function Menu() {
-
-    const openModal = () => {
-        let modal = document.querySelector(".LanguageModal");
-        modal.style.display = 'flex';
-    };
+    const { languages, setLanguages, menuOpen } = useAppContext();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const resetLanguages = () => {
-        localStorage.clear();
-        window.dispatchEvent(new Event("storage"));
+        setLanguages([]);
     };
 
-    return <div className="Menu">
+    return <div className={`Menu ${menuOpen ? 'opened' : 'closed'}`}>
         <div className="menu-lang-div">
             <h4 className="menu-lang-title">Target languages:</h4>
-            {JSON.parse(localStorage.getItem('languagesArray'))?.map((element, index) => {
+            {languages?.map((element, index) => {
                 return <LanguageItem key={index} lang={element} />
             })}
             <div className="menu-buttons">
                 <button className="menu-add-btn" onClick={resetLanguages}>Clear all languages</button>
-                <button className="menu-add-btn" onClick={openModal}>Add new language</button>
+                <button className="menu-add-btn" onClick={() => setIsModalOpen(true)}>Add new language</button>
             </div>
             <br></br>
-            <LanguageModal />
+            {isModalOpen && <LanguageModal onClose={() => setIsModalOpen(false)} />}
         </div>
         <div className="menu-attributions">
                 <p>Attributions:</p>
@@ -36,7 +33,6 @@ function Menu() {
                 <a rel="noreferrer" target="_blank" href="https://icons8.com/icon/62856/github">GitHub icon by Icons8</a>
         </div>
     </div>;
-
 }
 
 export default Menu;
