@@ -3,14 +3,14 @@ import {languages} from "../../../lib/languages.js";
 
 import './LanguageModal.css';
 
-class LanguageModal extends React.Component{
+function LanguageModal() {
 
-    cancel(){
+    const cancel = () => {
         let modal = document.querySelector(".LanguageModal");
         modal.style.display = 'none';
     };
 
-    add(){
+    const add = () => {
         let modal = document.querySelector(".LanguageModal");
         let select = document.querySelector("#languages");
         let lang = {"name": select.options[select.selectedIndex].text, "code": select.value};
@@ -37,22 +37,20 @@ class LanguageModal extends React.Component{
             window.dispatchEvent(new Event("storage"));
         }
         modal.style.display = 'none';
-    }
-
-    render(){
-        return <div className="LanguageModal">  
-            <h4>Choose language:</h4>
-            <select name="languages" id="languages">
-                {languages.map((element, index) => {
-                    return <option key={index} value={element.code}>{element.name}</option>
-                })}
-            </select>
-            <div className="modal-confirm">
-                <button onClick={this.cancel}>Cancel</button>
-                <button onClick={this.add}>Add</button>
-            </div>
-        </div>;
     };
+
+    return <div className="LanguageModal">  
+        <h4>Choose language:</h4>
+        <select name="languages" id="languages">
+            {languages.map((element, index) => {
+                return <option key={index} value={element.code}>{element.name}</option>
+            })}
+        </select>
+        <div className="modal-confirm">
+            <button onClick={cancel}>Cancel</button>
+            <button onClick={add}>Add</button>
+        </div>
+    </div>;
 
 }
 

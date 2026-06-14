@@ -12,44 +12,36 @@ const NoLanguage = <div className="no-lang">
 </div>;
 
 
-class Content extends React.Component{
+function Content() {
 
-    constructor(props){
-        super(props);
-        this.runTranslation = this.runTranslation.bind(this);
-        this.toggleLoader = this.toggleLoader.bind(this);
-    }
-
-    async runTranslation(){
-        let textInput = document.querySelector("#input-text").value;
-        this.toggleLoader(true, ".translation-loader");
-        this.toggleLoader(true, ".variations-loader");
-        await handleTranslate(textInput, JSON.parse( localStorage.getItem("languagesArray") ), this.toggleLoader);
-        await handleDictionary(textInput, JSON.parse( localStorage.getItem("languagesArray") ), this.toggleLoader);
-    }
-
-    toggleLoader(loading, type){
+    const toggleLoader = (loading, type) => {
         let loader = document.querySelector(type);
         if(loading){
             loader.style.display = "flex";
         }else if(!loading) {
             loader.style.display = "none";
         }
-    }
-
-    render(){
-        return <div className="Content">
-            <div className="input-div">
-                <TextInput runTranslation={this.runTranslation} clearText={clearText} />
-            </div>
-            <div className="result-cards">
-                {JSON.parse(localStorage.getItem('languagesArray')) === null ? NoLanguage : null}
-                {JSON.parse(localStorage.getItem('languagesArray'))?.map((element, index) => {
-                    return <ResultCard key={index} lang={element} />
-                })}
-            </div>
-        </div>;
     };
+
+    const runTranslation = async () => {
+        let textInput = document.querySelector("#input-text").value;
+        toggleLoader(true, ".translation-loader");
+        toggleLoader(true, ".variations-loader");
+        await handleTranslate(textInput, JSON.parse( localStorage.getItem("languagesArray") ), toggleLoader);
+        await handleDictionary(textInput, JSON.parse( localStorage.getItem("languagesArray") ), toggleLoader);
+    };
+
+    return <div className="Content">
+        <div className="input-div">
+            <TextInput runTranslation={runTranslation} clearText={clearText} />
+        </div>
+        <div className="result-cards">
+            {JSON.parse(localStorage.getItem('languagesArray')) === null ? NoLanguage : null}
+            {JSON.parse(localStorage.getItem('languagesArray'))?.map((element, index) => {
+                return <ResultCard key={index} lang={element} />
+            })}
+        </div>
+    </div>;
 
 }
 

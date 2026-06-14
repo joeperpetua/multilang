@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Menu from './Components/Menu/Menu';
 import Nav from './Components/Nav/Nav';
 import Content from './Components/Content/Content';
@@ -6,44 +6,41 @@ import Footer from './Components/Footer/Footer';
 import { clearText } from "./lib/clearText";
 import './App.css';
 
-class App extends React.Component{
+function App() {
+  const [languages, setLanguages] = useState([]);
 
-  constructor(props){
-      super(props);
-      this.state = {
-          languages: []
-      };
-  }
-
-  componentDidMount(){
+  useEffect(() => {
     console.log('mounted');
-    window.addEventListener('storage', () => {
-      //console.log("Settings changed.");
-      this.setState({
-          languages: JSON.parse(window.localStorage.getItem('languagesArray'))
-      });
+    
+    const handleStorage = () => {
+      setLanguages(JSON.parse(window.localStorage.getItem('languagesArray')));
       clearText();
-    });
+    };
+    
+    window.addEventListener('storage', handleStorage);
 
-    document.addEventListener("keydown", (e) => {
+    const handleKeydown = (e) => {
       if (e.code === "Enter") {
-        //console.log("Detected enter key.");
         document.querySelector("#translate-button").click();
       }
-    });
+    };
+    
+    document.addEventListener("keydown", handleKeydown);
 
-  }
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      document.removeEventListener("keydown", handleKeydown);
+    };
+  }, []);
 
-  render() {
-    return(
-      <div className="App">
-        <Nav />
-        <Menu />
-        <Content />
-        <Footer />
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <Nav />
+      <Menu />
+      <Content />
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
